@@ -51,6 +51,15 @@ app.use('/api/reports', reportsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
+// ─── Production static build ───────────────────────────────────────────────────
+if (process.env.NODE_ENV === 'production') {
+  const buildPath = path.join(__dirname, '../../frontend/build');
+  app.use(express.static(buildPath));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
+  });
+}
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {

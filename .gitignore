@@ -3,4 +3,9 @@ node_modules/
 .cache/
 dist/
 build/
+frontend/build/
 .env
+**/.env
+*.env.local
+backend/uploads/*
+!backend/uploads/.gitkeep
