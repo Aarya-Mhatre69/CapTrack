@@ -14,7 +14,7 @@
 
 <br />
 
-**CapTrack** is a full-stack Capstone Project Monitoring System built for Fr. CRIT, designed to streamline the entire capstone lifecycle — from team registration and mentor assignment to milestone tracking, submission reviews, and institutional reporting.
+**CapTrack** is a full-stack Capstone Project Monitoring System built for Fr. CRIT, designed to streamline the entire capstone lifecycle - from team registration and mentor assignment to milestone tracking, submission reviews, and institutional reporting.
 
 [Features](#-features) · [Tech Stack](#-tech-stack) · [Architecture](#-architecture) · [Getting Started](#-getting-started) · [API Reference](#-api-reference) · [Security](#-security)
 
@@ -24,7 +24,7 @@
 
 ## 📋 Overview
 
-CapTrack replaces manual spreadsheet-based capstone tracking with a structured, role-aware platform. Three distinct user roles — **Students**, **Mentors**, and **Coordinators** — each get a dedicated dashboard tailored to their responsibilities.
+CapTrack replaces manual spreadsheet-based capstone tracking with a structured, role-aware platform. Three distinct user roles - **Students**, **Mentors**, and **Coordinators** - each get a dedicated dashboard tailored to their responsibilities.
 
 The system enforces a formal **3-stage approval pipeline**: team registration → mentor approval → coordinator activation, ensuring no team begins work without proper institutional oversight.
 
@@ -41,7 +41,7 @@ The system enforces a formal **3-stage approval pipeline**: team registration �
 | **Project Management** | Create and update project title and description post-activation |
 | **Milestone Calendar** | Full interactive calendar with colour-coded milestone deadlines and statuses |
 | **Kanban Task Board** | Drag-and-drop board with To Do / In Progress / Review / Done columns, priority levels, and member assignment |
-| **Versioned Submissions** | Upload up to 5 PDFs per submission linked to a milestone — auto-increments version number (`v1`, `v2`…) per milestone |
+| **Versioned Submissions** | Upload up to 5 PDFs per submission linked to a milestone - auto-increments version number (`v1`, `v2`…) per milestone |
 | **Feedback Viewer** | Consolidated view of all mentor feedback across milestones and submissions |
 | **Comment Threads** | Threaded discussion on each submission with role badges (Team / Mentor / Coordinator) and time-ago timestamps |
 | **Interaction Sheet PDF** | One-click download of a formatted A4 PDF: team info box, member table, submission history, mentor feedback, signature strip |
@@ -63,15 +63,15 @@ The system enforces a formal **3-stage approval pipeline**: team registration �
 | Feature | Description |
 |---|---|
 | **Analytics Dashboard** | Live Recharts bar chart (teams by status) + donut chart (milestone completion rate) with auto-generated smart insights |
-| **Smart Insights Panel** | Auto-generated callouts — e.g. "5 teams pending activation", "milestone approval rate below 30%" |
+| **Smart Insights Panel** | Auto-generated callouts - e.g. "5 teams pending activation", "milestone approval rate below 30%" |
 | **Excel Report Export** | Server-side 2-sheet workbook: Teams Overview (status, mentor, project, milestones) + Milestones Detail, with colour-coded cells |
-| **Team Activation** | Final approval step — activate or reject mentor-approved teams |
+| **Team Activation** | Final approval step - activate or reject mentor-approved teams |
 | **All Teams Table** | Searchable table with force mentor reassignment and status revocation |
 | **Mentor Management** | View all registered mentors, assignment counts, department, and expertise |
 | **Milestone Management** | Create milestones for one team or all active teams at once; set deadlines; delete |
 | **Announcement System** | Post Normal / High Priority / Broadcast announcements to all users |
-| **Phase Control** | Toggle global capstone phase (Pre-Launch → Synopsis → Mid-Term → Final) — reflected system-wide |
-| **Paginated Audit Log** | Every system action logged with action type, actor, target, details, and timestamp — paginated 50/page |
+| **Phase Control** | Toggle global capstone phase (Pre-Launch → Synopsis → Mid-Term → Final) - reflected system-wide |
+| **Paginated Audit Log** | Every system action logged with action type, actor, target, details, and timestamp - paginated 50/page |
 | **Submission Discussion Viewer** | Read all per-submission comment threads across every team |
 
 ---
@@ -80,39 +80,39 @@ The system enforces a formal **3-stage approval pipeline**: team registration �
 
 | Layer | Implementation |
 |---|---|
-| **Security Headers** | `helmet` — X-Frame-Options, CSP, HSTS, and 11 other HTTP security headers |
-| **Brute-Force Protection** | `express-rate-limit` — 100 req/15 min globally, 20 req/15 min on all auth routes |
-| **NoSQL Injection Prevention** | `express-mongo-sanitize` — strips `$` and `.` operators from all request bodies and query strings |
-| **XSS Sanitisation** | `xss-clean` — strips HTML tags from all user input |
-| **Input Validation** | `joi` schemas on every mutation endpoint — incorrect types, invalid enums, and oversized payloads return HTTP 422 |
+| **Security Headers** | `helmet` - X-Frame-Options, CSP, HSTS, and 11 other HTTP security headers |
+| **Brute-Force Protection** | `express-rate-limit` - 100 req/15 min globally, 20 req/15 min on all auth routes |
+| **NoSQL Injection Prevention** | `express-mongo-sanitize` - strips `$` and `.` operators from all request bodies and query strings |
+| **XSS Sanitisation** | `xss-clean` - strips HTML tags from all user input |
+| **Input Validation** | `joi` schemas on every mutation endpoint - incorrect types, invalid enums, and oversized payloads return HTTP 422 |
 | **JWT Authentication** | Signed tokens with configurable expiry; role embedded in payload and verified on every request |
-| **RBAC Middleware** | Three roles (`STUDENT`, `MENTOR`, `COORDINATOR`) enforced per route — cross-role access returns HTTP 403 |
+| **RBAC Middleware** | Three roles (`STUDENT`, `MENTOR`, `COORDINATOR`) enforced per route - cross-role access returns HTTP 403 |
 | **File Upload Hardening** | MIME-type whitelist (PDF only), 10 MB per-file limit, max 5 files per submission |
-| **Body Size Cap** | `express.json({ limit: '2mb' })` — rejects oversized payloads before route handlers run |
-| **Coordinator Gate** | Institution Master Key required for coordinator registration — not exposed in client code |
+| **Body Size Cap** | `express.json({ limit: '2mb' })` - rejects oversized payloads before route handlers run |
+| **Coordinator Gate** | Institution Master Key required for coordinator registration - not exposed in client code |
 
 ---
 
 ## 📦 Tech Stack
 
 ### Backend
-- **Runtime** — Node.js 18+
-- **Framework** — Express 4
-- **Database** — MongoDB via Mongoose 8 (Atlas-compatible)
-- **Auth** — `jsonwebtoken` + `bcryptjs`
-- **Validation** — Joi 18
-- **File Uploads** — Multer with disk storage
-- **PDF Generation** — PDFKit (styled, multi-section A4 documents)
-- **Excel Export** — ExcelJS (multi-sheet, styled workbooks with frozen headers)
-- **Security Stack** — Helmet · express-rate-limit · express-mongo-sanitize · xss-clean
+- **Runtime** - Node.js 18+
+- **Framework** - Express 4
+- **Database** - MongoDB via Mongoose 8 (Atlas-compatible)
+- **Auth** - `jsonwebtoken` + `bcryptjs`
+- **Validation** - Joi 18
+- **File Uploads** - Multer with disk storage
+- **PDF Generation** - PDFKit (styled, multi-section A4 documents)
+- **Excel Export** - ExcelJS (multi-sheet, styled workbooks with frozen headers)
+- **Security Stack** - Helmet · express-rate-limit · express-mongo-sanitize · xss-clean
 
 ### Frontend
-- **Framework** — React 18 (CRA)
-- **Routing** — React Router 6
-- **Styling** — Tailwind CSS 3 (custom institutional light theme)
-- **Charts** — Recharts (responsive bar + donut)
-- **Client Excel** — SheetJS / xlsx
-- **State** — React Context (Auth, Toast)
+- **Framework** - React 18 (CRA)
+- **Routing** - React Router 6
+- **Styling** - Tailwind CSS 3 (custom institutional light theme)
+- **Charts** - Recharts (responsive bar + donut)
+- **Client Excel** - SheetJS / xlsx
+- **State** - React Context (Auth, Toast)
 
 ### Data Models (10)
 `Team` · `User` · `Milestone` · `Submission` · `Feedback` · `Comment` · `Announcement` · `Task` · `PhaseConfig` · `AuditLog`
@@ -229,7 +229,7 @@ npm run build
 | Variable | Required | Description |
 |---|---|---|
 | `MONGODB_URI` | ✅ | MongoDB connection string (Atlas or local) |
-| `JWT_SECRET` | ✅ | Random secret for signing JWTs — minimum 32 characters |
+| `JWT_SECRET` | ✅ | Random secret for signing JWTs - minimum 32 characters |
 | `JWT_EXPIRES_IN` | ✅ | Token lifetime e.g. `7d`, `24h` |
 | `PORT` | ✅ | Server port (default `5000`) |
 | `NODE_ENV` | ✅ | `development` or `production` |
@@ -246,18 +246,18 @@ npm run build
 
 ## 📡 API Reference
 
-### Auth — `/api/auth`
+### Auth - `/api/auth`
 
 | Method | Endpoint | Auth | Description |
 |---|---|---|---|
-| `POST` | `/login/team` | — | Student team login |
-| `POST` | `/login/user` | — | Mentor / Coordinator login |
-| `POST` | `/register/team` | — | Team self-registration with members |
-| `POST` | `/register/mentor` | — | Mentor account registration |
+| `POST` | `/login/team` | - | Student team login |
+| `POST` | `/login/user` | - | Mentor / Coordinator login |
+| `POST` | `/register/team` | - | Team self-registration with members |
+| `POST` | `/register/mentor` | - | Mentor account registration |
 | `POST` | `/register/coordinator` | Institution Key | Coordinator account creation |
-| `GET` | `/mentors` | — | List mentors for registration dropdown |
+| `GET` | `/mentors` | - | List mentors for registration dropdown |
 
-### Student — `/api/student` *(Bearer token · team role)*
+### Student - `/api/student` *(Bearer token · team role)*
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -270,7 +270,7 @@ npm run build
 | `GET/POST/PUT/DELETE` | `/kanban` | Task board CRUD + drag-drop reorder |
 | `GET` | `/announcements` | All coordinator announcements |
 
-### Mentor — `/api/mentor` *(Bearer token · MENTOR role)*
+### Mentor - `/api/mentor` *(Bearer token · MENTOR role)*
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -284,7 +284,7 @@ npm run build
 | `GET/POST` | `/submissions/:id/comments` | Comment thread read/write |
 | `GET` | `/announcements` | All coordinator announcements |
 
-### Coordinator — `/api/coordinator` *(Bearer token · COORDINATOR role)*
+### Coordinator - `/api/coordinator` *(Bearer token · COORDINATOR role)*
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -300,7 +300,7 @@ npm run build
 | `GET` | `/audit-log?page=&limit=` | Paginated audit log |
 | `GET` | `/submissions/:id/comments` | Read submission discussion threads |
 
-### Reports — `/api/reports`
+### Reports - `/api/reports`
 
 | Method | Endpoint | Auth | Description |
 |---|---|---|---|
@@ -312,14 +312,14 @@ npm run build
 
 ## 🎨 UI Highlights
 
-- **Institutional light theme** — slate-50 background, white cards, indigo-600 primary, no dark mode clutter
+- **Institutional light theme** - slate-50 background, white cards, indigo-600 primary, no dark mode clutter
 - **Sidebar navigation** with role-specific items, live phase badge, and pending-action counters
-- **Quick Actions FAB** — floating button with contextual shortcuts per role
-- **Skeleton loaders** on every async data section — no layout shift
-- **Global toast notifications** — success / error / warning / info with auto-dismiss
-- **Fully responsive** — collapsible mobile sidebar with backdrop overlay
-- **Drag-and-drop Kanban** — native HTML5 drag events, column highlight on hover, optimistic UI updates
-- **Recharts** — fully responsive `BarChart` + `PieChart` with custom tooltips and colour-coded cells
+- **Quick Actions FAB** - floating button with contextual shortcuts per role
+- **Skeleton loaders** on every async data section - no layout shift
+- **Global toast notifications** - success / error / warning / info with auto-dismiss
+- **Fully responsive** - collapsible mobile sidebar with backdrop overlay
+- **Drag-and-drop Kanban** - native HTML5 drag events, column highlight on hover, optimistic UI updates
+- **Recharts** - fully responsive `BarChart` + `PieChart` with custom tooltips and colour-coded cells
 
 ---
 
@@ -356,7 +356,7 @@ AuditLog
 
 ## 📄 License
 
-MIT © 2026 Fr. Conceicao Rodrigues Institute of Technology — Department of Computer Engineering
+MIT © 2026 Fr. Conceicao Rodrigues Institute of Technology - Department of Computer Engineering
 
 ---
 
